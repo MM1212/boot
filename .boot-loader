@@ -4,7 +4,8 @@ mkdir ~/bin 2> /dev/null
 ln -s /usr/bin/python3 ~/bin/python 2> /dev/null
 # retrieve line number for the speakers
 pactl list sinks | grep -n "Description: Apple Audio Device Multichannel" | awk '{print $1}' | tr ':' ' ' > .tmp
-AUDIO_CHANNEL=$(pactl list sinks | head -n $(expr $(cat test) - 3) | tail -1 | awk '{print $2}' | tr '#' ' ')
+AUDIO_CHANNEL=$(pactl list sinks | head -n $(expr $(cat .tmp) - 3) | tail -1 | awk '{print $2}' | tr '#' ' ')
+rm .tmp
 pactl set-default-sink $AUDIO_CHANNEL
 pactl set-sink-mute @DEFAULT_SINK@ no
 pactl set-sink-volume @DEFAULT_SINK@ 150%
