@@ -6,7 +6,7 @@ ln -s /usr/bin/python3 ~/bin/python 2> /dev/null
 sink="Apple Audio Device Multichannel"
 hostname=$(hostname)
 # if hostname includes c2
-if [[ $hostname == "c2"* ]]; then
+if [[ "$hostname" == "c2"* ]]; then
   sink="Built-in Audio Analog Stereo"
 fi
 
